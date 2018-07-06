@@ -1,0 +1,9 @@
+rootProject.name = 'bluetoothsaturn4'
+include ':react-native-bluetooth-serial'
+project(':react-native-bluetooth-serial').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-bluetooth-serial/android')
+include ':easy-bluetooth-classic'
+project(':easy-bluetooth-classic').projectDir = new File(rootProject.projectDir, '../node_modules/easy-bluetooth-classic/android')
+include ':react-native-ble-plx'
+project(':react-native-ble-plx').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-ble-plx/android')
+
+include ':app'
