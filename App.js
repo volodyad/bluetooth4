@@ -25,6 +25,7 @@ export default class App extends Component{
     } 
     this.onConnect = this.onConnect.bind(this);
     this.pairDevice = this.pairDevice.bind(this);
+    this.onStartServer = this.onStartServer.bind(this);
 }
 
 write (message) {
@@ -59,9 +60,8 @@ pairDevice (device) {
 }
 
 componentDidMount() {
-debugger;
   BluetoothSerial.isEnabled().then(isEnabled => {
-    debugger;
+
   });
 
   
@@ -70,11 +70,24 @@ debugger;
 getTargetDevice(devices) {
   return devices.find(d => d.name === targetName);
 }
+
+onStartServer() {
+  BluetoothSerial.startServer().then(() => {
+    debugger;
+
+    BluetoothSerial.on('read', (response) => {
+      debugger;
+      this.setState({message: response.data})
+    })
+  }).catch(() => {
+    debugger;
+  })
+}
 onConnect() { 
   BluetoothSerial.list().then((devices) => {
     const device = this.getTargetDevice(devices);
     debugger;
-    if(null) {
+    if(device) {
       BluetoothSerial.connect(device.id)
         .then(() => {
           debugger;
@@ -114,7 +127,8 @@ renderDevices() {
       <View style={styles.container}>
         {this.renderDevices()}
         <Text>Device id</Text>
-        <Text> Is connected {this.state.connected} </Text>
+        <Text> Is connected: {this.state.connected} </Text>
+        <Text> Message: {this.state.message} </Text>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1, width: '100%'}}
           onChangeText={(text) => this.setState({connectToDeviceId: text})}
@@ -125,6 +139,10 @@ renderDevices() {
           title="Connect"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
+        />
+         <Button
+          onPress={this.onStartServer}
+          title="Start server"
         />
           <Button
                 title='Request enable'

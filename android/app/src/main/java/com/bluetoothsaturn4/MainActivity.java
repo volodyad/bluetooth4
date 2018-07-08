@@ -1,5 +1,4 @@
 package com.bluetoothsaturn4;
-import android.Bluetooth
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {

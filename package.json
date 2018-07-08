@@ -7,11 +7,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "easy-bluetooth-classic": "^1.0.4",
     "react": "16.3.1",
     "react-native": "0.55.4",
-    "react-native-ble-plx": "^0.9.1",
-    "react-native-bluetooth-serial": "^1.0.0-rc1"
+    "react-native-bluetooth-serial": "https://github.com/volodyad/react-native-bluetooth-serial.git#6d532e9a0b7d8a1ea91ccfeff9d5557fa36bbdc4"
   },
   "devDependencies": {
     "babel-jest": "23.2.0",
